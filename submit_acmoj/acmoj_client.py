@@ -155,6 +155,8 @@ def main():
         result = client.get_submission_detail(args.submission_id)
     elif args.command == "abort":
         result = client.abort_submission(args.submission_id)
+    elif args.command == "submit-git":
+        result = client.submit_git(args.problem_id, args.git_url)
 
     if result:
         print(json.dumps(result))
@@ -165,3 +167,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # Submit via git URL
+    submit_git_parser = subparsers.add_parser("submit-git", help="Submit repository via git URL")
+    submit_git_parser.add_argument("--problem-id", type=int, required=True, help="Problem ID")
+    submit_git_parser.add_argument("--git-url", type=str, required=True, help="Git repository URL")
