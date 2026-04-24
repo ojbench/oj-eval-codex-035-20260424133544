@@ -130,6 +130,11 @@ def main():
     abort_parser = subparsers.add_parser("abort", help="Abort submission evaluation")
     abort_parser.add_argument("--submission-id", type=int, required=True, help="Submission ID")
 
+    # Submit via git URL
+    submit_git_parser = subparsers.add_parser("submit-git", help="Submit repository via git URL")
+    submit_git_parser.add_argument("--problem-id", type=int, required=True, help="Problem ID")
+    submit_git_parser.add_argument("--git-url", type=str, required=True, help="Git repository URL")
+
     args = parser.parse_args()
 
     if not args.token:
@@ -167,7 +172,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # Submit via git URL
-    submit_git_parser = subparsers.add_parser("submit-git", help="Submit repository via git URL")
-    submit_git_parser.add_argument("--problem-id", type=int, required=True, help="Problem ID")
-    submit_git_parser.add_argument("--git-url", type=str, required=True, help="Git repository URL")
